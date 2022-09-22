@@ -6,14 +6,9 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:27:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/22 13:55:26 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:31:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/backtracking.h"
 
-
-// int	backtracking(int x, int y)
-// {
-	
-// }
