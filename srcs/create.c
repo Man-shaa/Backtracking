@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:15:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/22 15:24:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:46:19 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_data	*create_data()
 
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
-		return (0);
+		return (NULL);
 	return (data);
 }
 
@@ -57,7 +57,7 @@ void	fill_map(t_data *data, char *path)
 	while (line)
 	{
 		while (line[i] != '\0' && line[i] != '\n')
-			data->map.map[y][x++] = line[i++] - 48;
+			data->map.map[y][x++] = line[i++];
 		x = 0;
 		y++;
 		i = 0;
@@ -74,16 +74,18 @@ int	create_map(t_data *data, char *av)
 	data->map.height = line_count(data, av);
 	if (!data->map.height)
 		return (0);
-	data->map.map = ft_calloc(data->map.height, sizeof(int *));
+	data->map.map = ft_calloc(data->map.height, sizeof(char *));
 	if (!data->map.map)
 		return (0);
-	while (i < HEIGHT)
+	while (i < data->map.height)
 	{
-		data->map.map[i] = ft_calloc(data->map.length, sizeof(int));
+		data->map.map[i] = ft_calloc(data->map.length, sizeof(char));
 		if (!data->map.map[i])
 			return (free_map(data, i), 0);
 		i++;
 	}
 	fill_map(data, av);
+	if (!init_player(data))
+		return (0);
 	return (1);
 }
