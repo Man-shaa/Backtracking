@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:25:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/23 17:04:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:43:51 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ typedef struct s_data
 }				t_data;
 
 // backtracking.c
-int	recursive(t_data *data, int y, int x, int *dest);
-int	is_map_possible(t_data *data, char *path);
+int		recursive(t_data *data, int y, int x, int *dest);
+int		is_map_possible(t_data *data, char *path);
 
 // create.c
-t_data	*create_data();
+t_data	*create_data(void);
 int		line_count(t_data *data, char *path);
 void	fill_map(t_data *data, char *path);
 int		create_map(t_data *data, char *av);
@@ -51,7 +51,7 @@ void	free_map(t_data *data, int j);
 void	free_data(t_data *data);
 
 // init.c
-int	init_player(t_data *data);
+int		init_player(t_data *data);
 
 // print.c
 void	print_map(t_data *data);

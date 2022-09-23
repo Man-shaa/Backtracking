@@ -6,13 +6,13 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:15:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/23 14:46:19 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:51:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/backtracking.h"
 
-t_data	*create_data()
+t_data	*create_data(void)
 {
 	t_data	*data;
 
@@ -73,10 +73,10 @@ int	create_map(t_data *data, char *av)
 	i = 0;
 	data->map.height = line_count(data, av);
 	if (!data->map.height)
-		return (0);
+		return (free(data), 0);
 	data->map.map = ft_calloc(data->map.height, sizeof(char *));
 	if (!data->map.map)
-		return (0);
+		return (free(data), 0);
 	while (i < data->map.height)
 	{
 		data->map.map[i] = ft_calloc(data->map.length, sizeof(char));
@@ -86,6 +86,6 @@ int	create_map(t_data *data, char *av)
 	}
 	fill_map(data, av);
 	if (!init_player(data))
-		return (0);
+		return (free_data(data), 0);
 	return (1);
 }

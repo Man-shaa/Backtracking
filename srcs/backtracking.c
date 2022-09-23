@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:27:43 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/23 18:10:44 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:51:28 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,16 @@ int	recursive(t_data *data, int y, int x, int *dest)
 		return (1);
 	if (data->map.map[y][x - 1] != '1')
 		if (recursive(data, y, x - 1, dest))
-		{
-			printf("pos : (%d ; %d)\n", y, x - 1);		
 			return (1);
-		}
 	if (data->map.map[y - 1][x] != '1')
 		if (recursive(data, y - 1, x, dest))
-		{
-			// printf("pos : (%d ; %d)\n", y - 1, x);		
 			return (1);
-		}
 	if (data->map.map[y][x + 1] != '1')
 		if (recursive(data, y, x + 1, dest))
-		{
-			// printf("pos : (%d ; %d)\n", y, x + 1);		
 			return (1);
-		}
 	if (data->map.map[y + 1][x] != '1')
 		if (recursive(data, y + 1, x, dest))
-		{
-			// printf("pos : (%d ; %d)\n", y + 1, x);		
 			return (1);
-		}
 	return (0);
 }
 
@@ -61,12 +49,16 @@ int	is_map_possible(t_data *data, char *path)
 			{
 				dest[0] = y;
 				dest[1] = x;
-				printf("For %c at ", data->map.map[y][x]);
 				if (!recursive(data, data->player_y, data->player_x, dest))
-					printf("(%d ; %d) : No possible path\n", y, x);
+				{
+					fill_map(data, path);
+					printf("For %c at (%d ; %d) : No possible path\n", data->map.map[y][x], y, x);
+				}
 				else
-					printf("(%d ; %d) : Path found\n", y, x);
-				fill_map(data, path);
+				{
+					fill_map(data, path);
+					printf("For %c at (%d ; %d) : Path found\n", data->map.map[y][x], y, x);
+				}
 			}
 			x++;
 		}
